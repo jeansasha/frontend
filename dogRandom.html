@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>JQuery 연습하고 가기!</title>
+      <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <!-- JQuery import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        * {
+            font-family: 'Ubuntu', sans-serif;
+        }
+      div.question-box {
+        margin: 10px 0 20px 0;
+      }
+      div.question-box > div {
+        margin-top: 30px;
+      }
+      .btn {
+          border-color: cadetblue;
+          border-radius: 10px;
+          background-color: white;
+          color: cadetblue;
+          width: 100px;
+          height: 40px;
+          font-size: 20px;
+          display: block;
+          margin: auto;
+      }
+      .btn:hover{
+          background-color: cadetblue;
+          color: white;
+      }
+      #img-dog {
+          display: block;
+          margin: auto;
+      }
+      h1 {
+          text-align: center;
+      }
+
+    </style>
+
+    <script>
+      function q1() {
+
+          $.ajax({
+                type: "GET",
+                url: "https://api.thedogapi.com/v1/images/search",
+                data: {},
+                success: function (response) {
+                  //첫번째 response의 이미지 url만 추출
+                  let imgUrl = response[0]['url']
+                    //이미지 변경
+                    $("#img-dog").attr("src", imgUrl);
+                }
+
+            })
+
+      }
+    </script>
+
+  </head>
+  <body>
+    <h1>Lovely Puppy</h1>
+
+    <hr/>
+
+    <div class="question-box">
+
+      <button class="btn" onclick="q1()">show</button>
+      <div>
+        <img id="img-dog" src="https://images.unsplash.com/photo-1600804340584-c7db2eacf0bf?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8cHVwcHl8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
+      </div>
+    </div>
+  </body>
+</html>
